@@ -41,7 +41,7 @@ $$z_{n+1} = z_n^2 + c, \quad z_0 = 0$$
 
 remains bounded as $n \to \infty$. Equivalently,
 
-$$\mathcal{M} = \left\{ c \in \mathbb{C} \;\middle|\; \limsup_{n \to \infty} |z_n| < \infty \right\}$$
+$$\mathcal{M} = \left\{ c \in \mathbb{C} \;\middle\vert\; \limsup_{n \to \infty} \lvert z_n \rvert < \infty \right\}$$
 
 ### Complex Arithmetic
 
@@ -57,11 +57,11 @@ $$b' = 2ab + c_i$$
 
 ### Escape-Time Algorithm
 
-For points outside the Mandelbrot set, the sequence $\{z_n\}$ diverges to infinity. The escape radius theorem guarantees that if $|z_n|^2 > R^2$ for any $n$, then $|z_n| \to \infty$. This program uses $R^2 = 4$, the theoretical minimum.
+For points outside the Mandelbrot set, the sequence $\{z_n\}$ diverges to infinity. The escape radius theorem guarantees that if $\lvert z_n \rvert^2 > R^2$ for any $n$, then $\lvert z_n \rvert \to \infty$. This program uses $R^2 = 4$, the theoretical minimum.
 
 For each pixel, the algorithm iterates until either the escape condition is met or the maximum iteration count is reached:
 
-$$n(c) = \min\left\{ n \in \mathbb{N} \;\middle|\; |z_n|^2 > 4 \right\}, \quad 0 \le n \le N_{\max}$$
+$$n(c) = \min\left\{ n \in \mathbb{N} \;\middle\vert\; \lvert z_n \rvert^2 > 4 \right\}, \quad 0 \le n \le N_{\max}$$
 
 where $N_{\max} = 255$. Points that never escape ($n = N_{\max}$) are classified as belonging to $\mathcal{M}$ and rendered in black (palette index 0).
 
@@ -91,15 +91,15 @@ The zoom box maintains a fixed $4\mathbin{:}3$ aspect ratio to match the display
 
 The discrete escape-time algorithm produces integer iteration counts, which create visible color banding at iteration boundaries. The normalized iteration count formula produces a continuous real-valued estimate $\mu$ that eliminates this banding.
 
-For a point that escapes at iteration $n$ with final squared magnitude $|z_n|^2$, the smooth value is:
+For a point that escapes at iteration $n$ with final squared magnitude $\lvert z_n \rvert^2$, the smooth value is:
 
-$$\mu = n + 1 - \frac{\log\!\left(\log |z_n|\right)}{\log 2}$$
+$$\mu = n + 1 - \frac{\log\!\left(\log \lvert z_n \rvert\right)}{\log 2}$$
 
-Since the code stores $|z_n|^2$ rather than $|z_n|$, it uses the algebraically equivalent form:
+Since the code stores $\lvert z_n \rvert^2$ rather than $\lvert z_n \rvert$, it uses the algebraically equivalent form:
 
-$$\mu = n + 1 - \frac{\log\!\left(\tfrac{1}{2} \log |z_n|^2\right)}{\log 2}$$
+$$\mu = n + 1 - \frac{\log\!\left(\tfrac{1}{2} \log \lvert z_n \rvert^2\right)}{\log 2}$$
 
-This works because $\log|z_n| = \tfrac{1}{2}\log|z_n|^2$. The formula is derived from the asymptotic growth rate of the orbit: for large $|z|$, the iteration $z \mapsto z^2 + c$ approximately doubles $\log|z|$ at each step, so the fractional number of iterations needed to reach a reference escape radius can be interpolated logarithmically.
+This works because $\log\lvert z_n \rvert = \tfrac{1}{2}\log\lvert z_n \rvert^2$. The formula is derived from the asymptotic growth rate of the orbit: for large $\lvert z \rvert$, the iteration $z \mapsto z^2 + c$ approximately doubles $\log\lvert z \rvert$ at each step, so the fractional number of iterations needed to reach a reference escape radius can be interpolated logarithmically.
 
 Points inside the set ($n = N_{\max}$) return $\mu = -1$, which callers treat as a sentinel for the set interior.
 
@@ -129,7 +129,7 @@ $$c_{s_x, s_y} = \left( x_{\min} + \left(p_x + \frac{s_x + 0.5}{N}\right) \Delta
 
 for $s_x, s_y \in \{0, 1, \ldots, N-1\}$. Each sub-sample produces a smooth iteration value $\mu_k$. The final color for the pixel is the average over all escaped sub-samples:
 
-$$\bar{\mu} = \frac{1}{|\mathcal{E}|} \sum_{k \in \mathcal{E}} \mu_k$$
+$$\bar{\mu} = \frac{1}{\lvert \mathcal{E} \rvert} \sum_{k \in \mathcal{E}} \mu_k$$
 
 where $\mathcal{E} \subseteq \{0, \ldots, N^2 - 1\}$ is the subset of sub-samples that escaped (i.e., $\mu_k \ge 0$). If $\mathcal{E} = \varnothing$, all sub-samples are interior points and the pixel is colored black. This averaging reduces spatial aliasing artifacts in high-frequency detail regions of the fractal.
 
