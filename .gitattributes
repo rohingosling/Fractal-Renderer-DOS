@@ -1,0 +1,3 @@
+# Exclude from GitHub source archives (zip/tar)
+.gitignore      export-ignore
+.gitattributes  export-ignore
