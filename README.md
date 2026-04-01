@@ -5,9 +5,9 @@
 ![Assembly](https://img.shields.io/badge/Assembly-654FF0?style=flat&logoColor=white)
 ![DOS](https://img.shields.io/badge/DOS-000000?style=flat&logo=windows&logoColor=white)
 
-An interactive Mandelbrot set explorer for DOS, rendered in 256-color VESA SVGA mode (up to 1024x768). Features smooth iteration coloring, supersampling anti-aliasing, interactive zoom, and post-processing color normalization.
+An interactive Mandelbrot set explorer, rendered in 256-color VESA SVGA mode (up to 1024x768). Features smooth iteration coloring, supersampling anti-aliasing, interactive zoom, and post-processing color normalization.
 
-Written in C/C++ for DOS. Compiled with Borland Turbo C++ 3.1, targeting 16-bit x86 real mode with the large memory model. Runs in DOSBox.
+Written in C/C++ for DOS back in the 1990s. Compiled with Borland Turbo C++ 3.1, targeting 16-bit x86 real mode with the large memory model. Can be tested today using a DOS emulator like DOSBox or DOSBox-X. I've tested it in DOSBox. 
 
 ![](images/NORM0030.png)
 
@@ -41,7 +41,7 @@ $$z_{n+1} = z_n^2 + c, \quad z_0 = 0$$
 
 remains bounded as $n \to \infty$. Equivalently,
 
-$$\mathcal{M} = \left\{ c \in \mathbb{C} \;\middle\vert\; \limsup_{n \to \infty} \lvert z_n \rvert < \infty \right\}$$
+$$\mathcal{M} = \left\lbrace c \in \mathbb{C} \;\middle\vert\; \limsup_{n \to \infty} \lvert z_n \rvert < \infty \right\rbrace$$
 
 ### Complex Arithmetic
 
@@ -61,7 +61,7 @@ For points outside the Mandelbrot set, the sequence $\{z_n\}$ diverges to infini
 
 For each pixel, the algorithm iterates until either the escape condition is met or the maximum iteration count is reached:
 
-$$n(c) = \min\left\{ n \in \mathbb{N} \;\middle\vert\; \lvert z_n \rvert^2 > 4 \right\}, \quad 0 \le n \le N_{\max}$$
+$$n(c) = \min\left\lbrace n \in \mathbb{N} \;\middle\vert\; \lvert z_n \rvert^2 > 4 \right\rbrace, \quad 0 \le n \le N_{\max}$$
 
 where $N_{\max} = 255$. Points that never escape ($n = N_{\max}$) are classified as belonging to $\mathcal{M}$ and rendered in black (palette index 0).
 
