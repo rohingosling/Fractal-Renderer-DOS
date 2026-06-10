@@ -17,6 +17,3 @@ prompts/
 
 # CEL binary files (only PNGs are included)
 *.CEL
-
-# Image backups
-images/backup/
