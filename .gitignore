@@ -3,9 +3,6 @@
 *.EXE
 BUILD.LOG
 
-# Claude Code artifacts
-.claude/
-
 # Editor settings
 .vscode/
 
@@ -14,9 +11,6 @@ BUILD.LOG
 
 # Python tools
 tools/
-
-# Claude Code project instructions
-CLAUDE.md
 
 # AI prompts
 prompts/
