@@ -12,8 +12,5 @@ BUILD.LOG
 # Python tools
 tools/
 
-# AI prompts
-prompts/
-
 # CEL binary files (only PNGs are included)
 *.CEL
