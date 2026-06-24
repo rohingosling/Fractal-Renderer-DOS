@@ -1,0 +1,16 @@
+# Build artifacts
+*.OBJ
+*.EXE
+BUILD.LOG
+
+# Editor settings
+.vscode/
+
+# Python virtual environment
+.venv/
+
+# Python tools
+tools/
+
+# CEL binary files (only PNGs are included)
+*.CEL
